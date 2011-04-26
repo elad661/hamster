@@ -254,7 +254,7 @@ function Asteroids() {
 		h = document.body.clientHeight;
 	}
 	
-	var playerWidth = 20, playerHeight = 30;
+	var playerWidth = 47, playerHeight = 68;
 	
 	var playerVerts = [[-1 * playerHeight/2, -1 * playerWidth/2], [-1 * playerHeight/2, playerWidth/2], [playerHeight/2, 0]];
 	
@@ -275,7 +275,7 @@ function Asteroids() {
 	var timeBetweenFire = 150; // how many milliseconds between shots
 	var timeBetweenBlink = 250; // milliseconds between enemy blink
 	var timeBetweenEnemyUpdate = isIE ? 10000 : 2000;
-	var bulletRadius = 2;
+	var bulletRadius = 5;
 	var maxParticles = isIE ? 20 : 40;
 	var maxBullets = isIE ? 10 : 20;
 	
@@ -793,11 +793,7 @@ function Asteroids() {
 		this.save();
 		this.translate(that.pos.x, that.pos.y);
 		this.rotate(that.dir.angle());
-		this.tracePoly(playerVerts);
-		this.fillStyle = "white";
-		this.fill();
-		this.tracePoly(playerVerts);
-		this.stroke();
+		this.drawImage(image, -35, -20);
 		this.restore();
 	};
 	
@@ -805,10 +801,11 @@ function Asteroids() {
 	
 	this.ctx.drawBullets = function(bullets) {
 		for ( var i = 0; i < bullets.length; i++ ) {
-			this.beginPath();
+			this.beginPath();	
+			this.drawImage(cookie, bullets[i].pos.x, bullets[i].pos.y);
 			this.arc(bullets[i].pos.x, bullets[i].pos.y, bulletRadius, 0, PI_SQ, true);
 			this.closePath();
-			this.fill();
+			//this.fill();
 		}
 	};
 	
@@ -828,24 +825,27 @@ function Asteroids() {
 	};
 	
 	this.ctx.drawFlames = function(flame) {
-		this.save();
+		/*this.save();
 		
 		this.translate(that.pos.x, that.pos.y);
 		this.rotate(that.dir.angle());
 		
 		var oldColor = this.strokeStyle;
-		this.strokeStyle = "red";
+		/*this.strokeStyle = "red";
 		this.tracePoly(flame.r);
-		this.stroke();
+		this.stroke();/
 		
 		this.strokeStyle = "yellow";
 		this.tracePoly(flame.y);
 		this.stroke();
 		
 		this.strokeStyle = oldColor;
-		this.restore();
+		this.restore();*/
 	}
-	
+	var image = new Image();
+	image.src="http://www.doom.co.il/hamster/hamster.png";
+	var cookie=new Image();
+	cookie.src="http://www.doom.co.il/hamster/cookie.png";
 	/*
 		Game loop
 	*/
