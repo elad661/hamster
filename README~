@@ -1,6 +1,6 @@
-This is the hamster version of erkie.github.com.
+Blow up any page with this bookmarklet
 
-Which means: I took Erkie's astroids code, and I changed the triangle to a hamster, and the bullets to cookies.
+The code is in asteroids.js, and if you feel like pushing any updates it would really help if you updated the asteroids.min.js to match your commit.
 
 LICENSE:
 This software is provided 'as-is', without any express or implied
